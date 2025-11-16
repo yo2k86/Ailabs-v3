@@ -19,7 +19,8 @@ export default async function handler(request, response) {
 
         // 3. Ambil data yang dikirim dari frontend (index.html)
         // Kita akan memodifikasi index.html untuk mengirim 'model' dan 'payload'
-        const { model, payload } = await request.json();
+        // const { model, payload } = await request.json(); // <--- INI SALAH
+        const { model, payload } = request.body; // <--- INI PERBAIKANNYA
 
         if (!model || !payload) {
             return response.status(400).json({ error: "Permintaan tidak lengkap. Butuh 'model' dan 'payload'." });
